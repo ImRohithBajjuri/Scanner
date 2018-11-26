@@ -49,7 +49,7 @@ public class pagerAdapter extends FragmentStatePagerAdapter {
                 return "Text scanner";
 
             case 1:
-                return "QR code scanner";
+                return "QR code";
 
             case 2:
                 return "History";
