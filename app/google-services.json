@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "566415404585",
+    "firebase_url": "https://scanner-808fb.firebaseio.com",
+    "project_id": "scanner-808fb",
+    "storage_bucket": "scanner-808fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566415404585:android:a242bcf32c15e140",
+        "android_client_info": {
+          "package_name": "com.rohith.scanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566415404585-neq4jq71fbt29gftg81i8eeimi4ururv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rohith.scanner",
+            "certificate_hash": "32a3fc8a5b953a6de63d7fc1093ec9c4a16b312a"
+          }
+        },
+        {
+          "client_id": "566415404585-l1hg72d5fs19ol68vstt9nhi0ce6di23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYFoA7MqWZ3bkpLb4dLKktGckB3MxqaAo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566415404585-l1hg72d5fs19ol68vstt9nhi0ce6di23.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
