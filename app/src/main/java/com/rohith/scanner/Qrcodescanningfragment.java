@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.Fragment;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -36,6 +37,9 @@ import java.util.Objects;
 public class Qrcodescanningfragment extends Fragment {
 
 
+    CustomTabsIntent.Builder builder;
+    Context context;
+
     public Qrcodescanningfragment() {
         // Required empty public constructor
     }
@@ -47,10 +51,18 @@ public class Qrcodescanningfragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root ;
-        Context context;
+        context=getActivity();
+
+
         root =  inflater.inflate(R.layout.fragment_qrcodescanningfragment, container, false);
         barcodeView = root.findViewById(R.id.qrscan);
         barcodeView.decodeContinuous(callback);
+
+        builder=new CustomTabsIntent.Builder();
+        builder.setShowTitle(true);
+        builder.setToolbarColor(context.getResources().getColor(R.color.colorPrimary));
+        builder.addDefaultShareMenuItem();
+
         return root;
     }
 
@@ -79,8 +91,11 @@ public class Qrcodescanningfragment extends Fragment {
                                 else {
                                     url = "http://www.google.com/#q=" + result.getText();
                                 }
-                                Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                                startActivity(intent);
+
+
+                                CustomTabsIntent customTabsIntent=builder.build();
+                                customTabsIntent.launchUrl(context,Uri.parse(url));
+
                                 dialog.dismiss();
                                barcodeView.pause();
                             }
