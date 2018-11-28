@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -44,7 +46,7 @@ public class Qrcodescanningfragment extends Fragment {
         // Required empty public constructor
     }
 
-    private CompoundBarcodeView barcodeView;
+     static CompoundBarcodeView barcodeView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -52,6 +54,7 @@ public class Qrcodescanningfragment extends Fragment {
         // Inflate the layout for this fragment
         View root ;
         context=getActivity();
+
 
 
         root =  inflater.inflate(R.layout.fragment_qrcodescanningfragment, container, false);
@@ -62,6 +65,7 @@ public class Qrcodescanningfragment extends Fragment {
         builder.setShowTitle(true);
         builder.setToolbarColor(context.getResources().getColor(R.color.colorPrimary));
         builder.addDefaultShareMenuItem();
+
 
         return root;
     }
@@ -117,9 +121,10 @@ public class Qrcodescanningfragment extends Fragment {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    barcodeView.resume();
+                   barcodeView.resume();
                 }
             }, TIME_OUT);
+
 
 
         }
@@ -128,16 +133,6 @@ public class Qrcodescanningfragment extends Fragment {
         }
     };
 
-    @Override
-    public void onResume() {
-        barcodeView.resume();
-        super.onResume();
-    }
 
-    @Override
-    public void onPause() {
-        barcodeView.pause();
-        super.onPause();
-    }
 
 }

@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +32,34 @@ public class MainActivity extends AppCompatActivity {
         viewPager=findViewById(R.id.viewpager);
         pagerAdapter pagerAdapter=new pagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+
+
+
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                if (i>0){
+                    textscanningfragment.cameraView.stop();
+                    Qrcodescanningfragment.barcodeView.resume();
+                }
+                else if (i==0){
+                    textscanningfragment.cameraView.start();
+                    Qrcodescanningfragment.barcodeView.pause();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+
 
         tabLayout.setupWithViewPager(viewPager);
     }

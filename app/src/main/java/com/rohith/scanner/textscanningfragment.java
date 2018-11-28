@@ -5,7 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Patterns;
@@ -26,6 +29,7 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.wonderkiln.camerakit.CameraKitError;
 import com.wonderkiln.camerakit.CameraKitEvent;
 import com.wonderkiln.camerakit.CameraKitEventListener;
@@ -42,25 +46,16 @@ import java.util.Objects;
  */
 public class textscanningfragment extends Fragment {
 
-    CameraView cameraView;
+   static CameraView cameraView;
     Button button;
 
+    Handler handler;
+    HandlerThread handlerThread;
 
     public textscanningfragment() {
         // Required empty public constructor
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        cameraView.start();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        cameraView.stop();
-    }
 
 
     @Override
@@ -71,6 +66,12 @@ public class textscanningfragment extends Fragment {
         root =  inflater.inflate(R.layout.fragment_textscanningfragment, container, false);
         button = root.findViewById(R.id.button);
         cameraView =root.findViewById(R.id.cameraview);
+
+
+
+
+
+
         final Activity activity = getActivity();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
